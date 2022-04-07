@@ -1,0 +1,133 @@
+:root {
+    --primary-color: rgb(91, 21, 94);
+    --secondary-color: rgb(156, 18, 168);
+    --third-color: black;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    font-size: 20px;
+    margin:0 0 40px 0;
+}
+
+#header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+ol {
+    list-style-type:decimal;
+    list-style-position:inside;
+}
+
+#intro-info {
+    text-align: center;
+}
+
+.question-info, .end-screen, .scores {
+    text-align: left;
+    margin: 0 15% 0 30%;
+}
+
+main .title {
+    margin: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 40px;
+    margin: 50px 0 30px 0;
+}
+
+main p, label {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+main input {
+    padding: 7px 0;
+}
+
+.btn {
+    outline: none;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+    box-shadow: 0 4px black;
+}
+
+.btn:hover {
+    box-shadow: 1px 2px black;
+}
+
+.btn:active {
+    background-color: var(--secondary-color);
+}
+
+.time {
+    display: flex;
+    justify-content: right;
+    text-align: right;
+    margin: 20px;
+}
+
+.high-scores {
+    display: flex;
+    margin: 20px;
+    color: var(--secondary-color);
+}
+
+#question {
+    margin-bottom: 10px;
+    margin-top: 50px;
+
+}
+
+#question-answers button {
+    display: block;
+    text-align: left;
+}
+
+
+.end-screen h1, .end-screen p {
+    margin-bottom: 15px;
+}
+
+.end-screen h1 {
+    font-size: 50px;
+}
+
+.end-screen p {
+    font-size: 25px;
+}
+
+.end-screen .btn {
+    padding: 2px 15px;
+    border-radius: 6px;
+}
+
+
+
+.scores li {
+    font-size: 30px;
+    padding: 2px 7px;
+    margin: 2px 0;
+    background-color:rgb(203, 168, 206)
+}
+
+.scores h1 {
+    font-size: 55px;
+}
