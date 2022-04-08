@@ -43,6 +43,7 @@ var mainInfo = document.querySelector("main > div");
 var headerInfo = document.querySelector("#header")
 var startQuizButton = document.querySelector("#intro-info > button");
 var timer = document.querySelector("#timer");
+var highScoreButton = document.querySelector("#high-scores");
 
 //hidden elements to appear later
 var form = document.querySelector("#high-score-form");
@@ -345,3 +346,4 @@ form.addEventListener("submit", enterHighScore);
 
 goBackButton.addEventListener("click", goBack);
 clearScoresButton.addEventListener("click", clearScores);
+highScoreButton.addEventListener("click", loadHighScore);
