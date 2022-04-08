@@ -133,14 +133,15 @@ main input {
     margin-top: 70px;
 }
 
-.none {
-    display: none;
-}
-
 #last-answer {
     padding: 10px;
     font-style: italic;
     color: rgb(141, 140, 140);
     margin-top: 25px;
     border-top: 1px solid rgb(141, 140, 140);
+}
+
+/* general class for hiding elements */
+.none {
+    display: none;
 }

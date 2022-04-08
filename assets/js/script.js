@@ -196,9 +196,9 @@ var allDone = function(){
     mainInfo = document.querySelector("main > div");
 }
 
+//buffer function for loadHighScore to decipher whether or not there is another score to add to highScores judging from where loadHighScore was called
 var enterHighScore = function(event){
     event.preventDefault();
-    //debugger;
     var currentScore = 
     {
         name: document.querySelector("input").value,
@@ -317,6 +317,7 @@ var clearScores = function(){
     //parses info and loads it into current highScores array
     highScores = null;
     
+    //replaces the button objects into the main tag instead of the div so they dont get wiped when we remake the high scores page.
     var buttonBack = document.querySelector("#go-back");
     var buttonScores = document.querySelector("#clear-scores");
     buttonBack.textContent = "";
@@ -324,20 +325,24 @@ var clearScores = function(){
     buttonScores.textContent = "";
     buttonScores.className = "btn none";
 
-
     main.append(buttonBack, buttonScores);
 
     //reset mainInfo to current page
     mainInfo = document.querySelector("main > div");
 
+    //loads high score page again
     loadHighScore();
 }
 
 var goBack = function(){
+    //reloads page which resets all variables and puts you to the first screen
     location.reload();
 }
 
+//loads localStorage scores initially
 loadScores();
+
+//listeners for all the appropriate buttons
 startQuizButton.addEventListener("click", startQuiz);
 
 main.addEventListener("click", nextQuestion);
