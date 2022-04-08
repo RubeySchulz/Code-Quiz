@@ -125,6 +125,7 @@ var addQuestion = function(event){
     mainInfo = document.querySelector("main > div");
 }
 
+//listens for answers to the questions
 var nextQuestion = function(event){
     var targetEl = event.target;
 
@@ -146,18 +147,20 @@ var nextQuestion = function(event){
     }
 }
 
+//listener for the start quiz button
 var startQuiz = function(event){
     //start first question
     addQuestion();
 
     //set timer to 75 seconds
-    timerCount = 75;
+    timerCount = 200;
     timer.textContent = "Time: " + timerCount;
 
     //start the timer to go down once every second until 0
     countDown = setInterval(timerCountdown, 1000);
 }
 
+//creates the game over screen
 var allDone = function(){
     deleteEverything();
     //stop timer, update highscore
@@ -186,6 +189,7 @@ var allDone = function(){
     mainInfo = document.querySelector("main > div");
 }
 
+//function to create the high score page/recieve score data
 var enterHighScore = function(event){
     event.preventDefault();
     var currentScore = 
@@ -193,10 +197,28 @@ var enterHighScore = function(event){
         name: document.querySelector("input").value,
         score: timerCount
     };
-    highScores.push(currentScore);
+    
+    
+    if(highScores === null){
+        highScores = [currentScore];
+    }
+    else {
+        highScores.push(currentScore);
+    }
+
+    
+    for(var i = 0; i < highScores.length -1; i++){
+        if(highScores[i].score < highScores[i + 1].score){
+            var temp = highScores[i];
+            highScores[i] = highScores[i + 1];
+            highScores[i + 1] = temp;
+            i = -1;
+        }
+    }
+    
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 
     deleteEverything();
-
     
     var overall = document.createElement("div");
     overall.className = "scores";
@@ -208,6 +230,15 @@ var enterHighScore = function(event){
     list.id = "scores-list";
 
 
+
+    for(var i = 0; i < highScores.length; i++){
+        var listItem = document.createElement("li");
+        listItem.className = "score";
+        listItem.textContent = highScores[i].name + " - " + highScores[i].score;
+        list.appendChild(listItem);
+    }
+
+
     overall.append(title, list);
     overall.innerHTML += "<button class='btn' id='go-back'>Go Back</button><button class='btn' id='clear-scores'>Clear high scores</button>";
 
@@ -215,9 +246,17 @@ var enterHighScore = function(event){
 }
 
 var loadScores = function(){
+    var savedScores = localStorage.getItem("highScores");
+    if(highScores === null){
+        return false;
+    }
 
+    savedScores = JSON.parse(savedScores);
+
+    highScores = savedScores;
 }
 
+//makes the little footer with wrong or correct
 var footer = function(){
     var lastAnswer = document.createElement("h2");
     lastAnswer.id = "last-answer";
@@ -231,6 +270,7 @@ var footer = function(){
     return lastAnswer;
 }
 
+//function for the ongoing countdown during the quiz
 var timerCountdown = function(){
     if(timerCount > 0){
         timerCount--;
@@ -241,13 +281,6 @@ var timerCountdown = function(){
         clearInterval(countDown);
     }
 }
-
-//whenever a button is clicked in #question-answers, run the question and answers function again
-//return if the answers was correct or false and deduct time if false, while adding text on bottom saying true or false
-
-//after all the objects are run through, show end screen with a place to enter a name for a high score
-
-//after entered, show high score screen with options to clear high scores and go back
 
 loadScores();
 startQuizButton.addEventListener("click", startQuiz);
