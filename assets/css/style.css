@@ -130,6 +130,11 @@ main input {
 
 .scores h1 {
     font-size: 55px;
+    margin-top: 70px;
+}
+
+.none {
+    display: none;
 }
 
 #last-answer {
